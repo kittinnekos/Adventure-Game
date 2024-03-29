@@ -1,3 +1,4 @@
+&img background1 backgroundObject
 あいうえお
 かきくけこ
 さしすせそ

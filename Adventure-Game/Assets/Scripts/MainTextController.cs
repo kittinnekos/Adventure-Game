@@ -8,6 +8,13 @@ namespace NoverGame
         [SerializeField] Text _mainTextObject;
         void Start()
         {
+            // 最初の行のテキストを表示、または命令を実行
+            string statement = GameManager.Instance.userScriptManager.GetCurrentSentence();
+            if(GameManager.Instance.userScriptManager.IsStatement(statement))
+            {
+                GameManager.Instance.userScriptManager.ExecuteStatement(statement);
+                GoToTheNextLine();
+            }
             DisplayText();
         }
 
@@ -24,6 +31,12 @@ namespace NoverGame
         public void GoToTheNextLine()
         {
             GameManager.Instance.lineNumber++;
+            string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
+            if(GameManager.Instance.userScriptManager.IsStatement(sentence))
+            {
+                GameManager.Instance.userScriptManager.ExecuteStatement(sentence);
+                GoToTheNextLine();
+            }
         }
         // テキストを表示
         public void DisplayText()
