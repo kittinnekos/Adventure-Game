@@ -1,4 +1,7 @@
 &img background1 backgroundObject
 あいうえお
+&img eventCG1 eventObject
 かきくけこ
+&rmimg eventCG1
+&img eventCG2 eventObject
 さしすせそ
