@@ -7,6 +7,7 @@ namespace NoverGame
     {
         [SerializeField] Text _mainTextObject;
         int _displayedSentenceLength;
+        int _sentenceLength;
         float _time;
         float _feedTime;
         void Start()
@@ -43,6 +44,10 @@ namespace NoverGame
                 {
                     GoToTheNextLine();
                 }
+                else // すべて表示されていないときにクリックされた時、すべて表示する
+                {
+                    _displayedSentenceLength = _sentenceLength;
+                }
             }
             DisplayText();
         }
@@ -51,6 +56,7 @@ namespace NoverGame
         public bool CanGoToTheNextLine()
         {
             string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
+            _sentenceLength = sentence.Length;
             return (_displayedSentenceLength > sentence.Length);
         }
 
@@ -59,7 +65,6 @@ namespace NoverGame
         {
             _displayedSentenceLength = 0;
             _time = 0f;
-            //_mainTextObject.maxVisibleCharacters = 0;
             GameManager.Instance.lineNumber++;
             string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
             if(GameManager.Instance.userScriptManager.IsStatement(sentence))
