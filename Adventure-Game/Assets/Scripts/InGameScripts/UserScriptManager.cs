@@ -25,6 +25,9 @@ namespace NoverGame
         // 現在の行の文を取得する
         public string GetCurrentSentence()
         {
+            // テキストの全ての行が現在の行以上になったら、半角スペースを返す
+            if(_sentences.Count <= GameManager.Instance.lineNumber) return " ";
+            
             return _sentences[GameManager.Instance.lineNumber];
         }
 
@@ -49,6 +52,12 @@ namespace NoverGame
                     break;
                 case "&rmimg":
                     GameManager.Instance.imageManager.RemoveImage(words[1]);
+                    break;
+                case "&name":
+                    GameManager.Instance.speakerNameTextManager.DisplaySpeakerNameText(words[1]);
+                    break;
+                case "&end":
+                    GameManager.Instance.changeSceneManager.ChangeScene(words[1]);
                     break;
             }
         }
