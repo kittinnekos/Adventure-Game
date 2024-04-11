@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace NoverGame
+namespace AdventureGame
 {
     public class ChangeSceneManager : MonoBehaviour
     {

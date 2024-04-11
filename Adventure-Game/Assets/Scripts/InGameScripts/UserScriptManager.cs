@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-namespace NoverGame
+namespace AdventureGame
 {
     public class UserScriptManager : MonoBehaviour
     {
@@ -58,6 +58,9 @@ namespace NoverGame
                     break;
                 case "&end":
                     GameManager.Instance.changeSceneManager.ChangeScene(words[1]);
+                    break;
+                case "&select":
+                    GameManager.Instance.selectManager.PutOptionsPrefab(words[1]);
                     break;
             }
         }

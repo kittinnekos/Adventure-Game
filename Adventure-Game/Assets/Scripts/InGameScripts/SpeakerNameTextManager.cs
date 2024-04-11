@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace NoverGame
+namespace AdventureGame
 {
     public class SpeakerNameTextManager : MonoBehaviour
     {

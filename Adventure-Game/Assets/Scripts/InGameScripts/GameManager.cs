@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace NoverGame
+namespace AdventureGame
 {
     public class GameManager : MonoBehaviour
     {
@@ -12,6 +12,7 @@ namespace NoverGame
         public ImageManager imageManager;
         public SpeakerNameTextManager speakerNameTextManager;
         public ChangeSceneManager changeSceneManager;
+        public SelectManager selectManager;
 
         // ユーザースクリプトの、今の行の数値。クリック（タップ）のたびに1ずつ増える
         [System.NonSerialized] public int lineNumber;
