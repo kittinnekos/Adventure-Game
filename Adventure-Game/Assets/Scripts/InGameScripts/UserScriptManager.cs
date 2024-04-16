@@ -15,9 +15,9 @@ namespace AdventureGame
         {
             // テキストファイルの中身を、一行ずつリストに入れておく
             StringReader reader = new StringReader(_textFile.text);
-            while (reader.Peek() != -1)
+            while (reader.Peek() != -1) // テキストが末端になるまで繰り返す
             {
-                string line = reader.ReadLine();
+                string line = reader.ReadLine(); // 変数に一行ずつ格納している
                 _sentences.Add(line);
             }
         }
@@ -60,7 +60,7 @@ namespace AdventureGame
                     GameManager.Instance.changeSceneManager.ChangeScene(words[1]);
                     break;
                 case "&select":
-                    GameManager.Instance.selectManager.PutOptionsPrefab(words[1]);
+                    GameManager.Instance.selectManager.SpawnSelectPrefab(words[1], words[2]);
                     break;
             }
         }

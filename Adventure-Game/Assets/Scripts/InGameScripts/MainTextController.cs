@@ -38,7 +38,7 @@ namespace AdventureGame
             }
 
             // クリックされた時、次の行へ移動
-            if(Input.GetMouseButtonUp(0))
+            if(!GameManager.Instance.selectManager.IsSpawnSelectPrefab() && Input.GetMouseButtonUp(0))
             {
                 if(CanGoToTheNextLine())
                 {
