@@ -11,6 +11,8 @@ namespace AdventureGame
         // 文章中の文（ここでは一行ごと）を入れておくためのリスト
         List<string> _sentences = new List<string>();
 
+        [System.NonSerialized] public Coroutine coroutine;
+
         void Awake()
         {
             // テキストファイルの中身を、一行ずつリストに入れておく
@@ -61,6 +63,15 @@ namespace AdventureGame
                     break;
                 case "&select":
                     GameManager.Instance.selectManager.SpawnSelectPrefab(words[1], words[2]);
+                    // selectTextControllerのコルーチンを始める
+                    coroutine = GameManager.Instance.userScriptSelectTextManager.StartCoroutine
+                    (GameManager.Instance.selectTextController.ClickToNextLineCoroutine(words[2]));
+                    break;
+                case "&actchar":
+                    GameManager.Instance.characterManager.ChangeCharacterImage(words[1], words[2]);
+                    break;
+                case "&nonactchar":
+                    GameManager.Instance.characterManager.NonActiveCharacterImage(words[1]);
                     break;
             }
         }

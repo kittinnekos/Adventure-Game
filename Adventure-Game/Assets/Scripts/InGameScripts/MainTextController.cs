@@ -36,9 +36,15 @@ namespace AdventureGame
                     _displayedSentenceLength++;
                 }
             }
+            bool isSpawnSelectPrefab = GameManager.Instance.selectManager.IsSpawnSelectPrefab();
+            bool isCoroutineRunning = GameManager.Instance.selectTextController.IsCoroutineRunning(GameManager.Instance.userScriptManager.coroutine);
+            Debug.Log(!isSpawnSelectPrefab + "+" + !isCoroutineRunning);
+            // コルーチンが停止してもnullになっていないためメインテキストが動かない
+            //Debug.Log(GameManager.Instance.userScriptManager.coroutine);
 
             // クリックされた時、次の行へ移動
-            if(!GameManager.Instance.selectManager.IsSpawnSelectPrefab() && Input.GetMouseButtonUp(0))
+            // 条件：選択肢オブジェクトが無い、かつコルーチンが動いていない、かつクリックされた時
+            if(!isSpawnSelectPrefab && !isCoroutineRunning && Input.GetMouseButtonUp(0))
             {
                 if(CanGoToTheNextLine())
                 {

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -23,9 +22,9 @@ namespace AdventureGame
         void Awake()
         {   
             textToTextFile = new Dictionary<string, TextAsset>();
-            textToTextFile.Add("Select1", selectText1);
-            textToTextFile.Add("Select2", selectText2);
-            textToTextFile.Add("Select3", selectText3);
+            textToTextFile.Add("select1", selectText1);
+            textToTextFile.Add("select2", selectText2);
+            textToTextFile.Add("select3", selectText3);
 
             activeButtonNum = 0;
             selectTextList = new List<string>();
@@ -81,12 +80,6 @@ namespace AdventureGame
                 return true;
             }
             return false;
-        }
-
-        public IEnumerator StartOverSpawnSelectPrefab(string ActiveButtonNum, string TextName)
-        {
-            yield return null;
-            yield break;
         }
     }
 }
