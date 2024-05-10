@@ -8,7 +8,7 @@ namespace AdventureGame
         // 別のクラスからGameManagerの変数などを使えるようにするためのもの。（変更はできない）
         public static GameManager Instance { get; private set; }
 
-        public UserScriptManager userScriptManager;
+        public UserScriptMainTextManager userScriptMainTextManager;
         public UserScriptSelectTextManager userScriptSelectTextManager;
         public MainTextController mainTextController;
         public SelectTextController selectTextController;

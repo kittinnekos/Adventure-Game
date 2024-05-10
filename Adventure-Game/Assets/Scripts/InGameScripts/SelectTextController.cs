@@ -51,6 +51,7 @@ namespace AdventureGame
         {
             GameManager.Instance.userScriptSelectTextManager.ResetSelectTextLineNumber();
             bool isAllTextRunning = true;
+
             while(isAllTextRunning) // シナリオテキストを読み切ったら抜ける
             {
                 bool isSpawnSelectPrefab = GameManager.Instance.selectManager.IsSpawnSelectPrefab();
@@ -96,7 +97,7 @@ namespace AdventureGame
                 }
                 yield return null;
             }
-            GameManager.Instance.userScriptManager.coroutine = null;
+            GameManager.Instance.userScriptMainTextManager.coroutine = null;
             yield break;
         }
 

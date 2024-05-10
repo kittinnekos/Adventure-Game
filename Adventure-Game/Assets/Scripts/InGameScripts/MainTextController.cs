@@ -15,10 +15,10 @@ namespace AdventureGame
             _time = 0f;
             _feedTime = 0.05f;
             // 最初の行のテキストを表示、または命令を実行
-            string statement = GameManager.Instance.userScriptManager.GetCurrentSentence();
-            if(GameManager.Instance.userScriptManager.IsStatement(statement))
+            string statement = GameManager.Instance.userScriptMainTextManager.GetCurrentSentence();
+            if(GameManager.Instance.userScriptMainTextManager.IsStatement(statement))
             {
-                GameManager.Instance.userScriptManager.ExecuteStatement(statement);
+                GameManager.Instance.userScriptMainTextManager.ExecuteStatement(statement);
                 GoToTheNextLine();
             }
             DisplayText();
@@ -37,10 +37,8 @@ namespace AdventureGame
                 }
             }
             bool isSpawnSelectPrefab = GameManager.Instance.selectManager.IsSpawnSelectPrefab();
-            bool isCoroutineRunning = GameManager.Instance.selectTextController.IsCoroutineRunning(GameManager.Instance.userScriptManager.coroutine);
+            bool isCoroutineRunning = GameManager.Instance.selectTextController.IsCoroutineRunning(GameManager.Instance.userScriptMainTextManager.coroutine);
             Debug.Log(!isSpawnSelectPrefab + "+" + !isCoroutineRunning);
-            // コルーチンが停止してもnullになっていないためメインテキストが動かない
-            //Debug.Log(GameManager.Instance.userScriptManager.coroutine);
 
             // クリックされた時、次の行へ移動
             // 条件：選択肢オブジェクトが無い、かつコルーチンが動いていない、かつクリックされた時
@@ -61,7 +59,7 @@ namespace AdventureGame
         // その行の、すべての文字が表示されていなければ、まだ次の行へ進むことはできない
         public bool CanGoToTheNextLine()
         {
-            string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
+            string sentence = GameManager.Instance.userScriptMainTextManager.GetCurrentSentence();
             _sentenceLength = sentence.Length;
             return (_displayedSentenceLength > sentence.Length);
         }
@@ -72,10 +70,10 @@ namespace AdventureGame
             _displayedSentenceLength = 0;
             _time = 0f;
             GameManager.Instance.lineNumber++;
-            string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
-            if(GameManager.Instance.userScriptManager.IsStatement(sentence))
+            string sentence = GameManager.Instance.userScriptMainTextManager.GetCurrentSentence();
+            if(GameManager.Instance.userScriptMainTextManager.IsStatement(sentence))
             {
-                GameManager.Instance.userScriptManager.ExecuteStatement(sentence);
+                GameManager.Instance.userScriptMainTextManager.ExecuteStatement(sentence);
                 GoToTheNextLine();
             }
         }
@@ -83,7 +81,7 @@ namespace AdventureGame
         // テキストを表示
         public void DisplayText()
         {
-            string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
+            string sentence = GameManager.Instance.userScriptMainTextManager.GetCurrentSentence();
             string clampedSentence = sentence.Substring(0, Mathf.Min(sentence.Length, _displayedSentenceLength));
             _mainTextObject.text = clampedSentence;
         }

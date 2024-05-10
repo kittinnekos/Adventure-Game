@@ -4,7 +4,7 @@ using System.IO;
 
 namespace AdventureGame
 {
-    public class UserScriptManager : MonoBehaviour
+    public class UserScriptMainTextManager : MonoBehaviour
     {
         [SerializeField] TextAsset _textFile;
 

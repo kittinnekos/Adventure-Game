@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379423b3144932745932aa2c1cc5e7f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userScriptManager: {fileID: 1114881828}
+  userScriptMainTextManager: {fileID: 1114881828}
   userScriptSelectTextManager: {fileID: 1500338768}
   mainTextController: {fileID: 2053701467}
   selectTextController: {fileID: 2053701468}
@@ -851,7 +851,7 @@ GameObject:
   - component: {fileID: 1114881829}
   - component: {fileID: 1114881828}
   m_Layer: 0
-  m_Name: UserScriptManager
+  m_Name: UserScriptMainTextManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
