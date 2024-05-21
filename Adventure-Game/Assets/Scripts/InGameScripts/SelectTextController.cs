@@ -51,22 +51,31 @@ namespace AdventureGame
         {
             GameManager.Instance.userScriptSelectTextManager.ResetSelectTextLineNumber();
             bool isAllTextRunning = true;
+            bool isFirstprocessing = true;
 
             while(isAllTextRunning) // シナリオテキストを読み切ったら抜ける
             {
                 bool isSpawnSelectPrefab = GameManager.Instance.selectManager.IsSpawnSelectPrefab();
                 if(!isSpawnSelectPrefab)
                 {
-                    Debug.Log("ラインナンバー:" + GameManager.Instance.selectTextLineNumber);
-                    Debug.Log("リストカウント" + GameManager.Instance.pickSelectNumberList.Count);
                     int PSNLCount = GameManager.Instance.pickSelectNumberList.Count-1;
-                    Debug.Log("選択ナンバー" + GameManager.Instance.pickSelectNumberList[PSNLCount]);
+
+                    if(isFirstprocessing) // 最初の行のテキストを表示、または命令を実行
+                    {
+                        string statement = GameManager.Instance.userScriptSelectTextManager.GetCurrentSentence(textName);
+                        if(GameManager.Instance.userScriptSelectTextManager.IsStatement(statement))
+                        {
+                            GameManager.Instance.userScriptSelectTextManager.ExecuteStatement(statement);
+                            GoToTheNextLine(textName);
+                        }
+                        DisplayText(textName);
+                        isFirstprocessing = false;
+                    }
 
                     // 選択肢シナリオテキストの現在の行が、選んだ選択肢テキストの最大行以上になったらwhile文を抜ける
                     if(GameManager.Instance.selectTextLineNumber >= GameManager.Instance.userScriptSelectTextManager.textToSentencesList
                                                                     [textName][GameManager.Instance.pickSelectNumberList[PSNLCount]].Count)
                     {
-                        Debug.Log(false);
                         isAllTextRunning = false;
                         continue;
                     }

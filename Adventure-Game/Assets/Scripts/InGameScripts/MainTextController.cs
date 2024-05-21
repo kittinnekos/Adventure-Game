@@ -37,8 +37,8 @@ namespace AdventureGame
                 }
             }
             bool isSpawnSelectPrefab = GameManager.Instance.selectManager.IsSpawnSelectPrefab();
-            bool isCoroutineRunning = GameManager.Instance.selectTextController.IsCoroutineRunning(GameManager.Instance.userScriptMainTextManager.coroutine);
-            Debug.Log(!isSpawnSelectPrefab + "+" + !isCoroutineRunning);
+            bool isCoroutineRunning = GameManager.Instance.selectTextController.IsCoroutineRunning
+                                        (GameManager.Instance.userScriptMainTextManager.coroutine);
 
             // クリックされた時、次の行へ移動
             // 条件：選択肢オブジェクトが無い、かつコルーチンが動いていない、かつクリックされた時

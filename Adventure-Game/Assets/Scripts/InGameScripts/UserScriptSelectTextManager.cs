@@ -71,7 +71,9 @@ namespace AdventureGame
         public string GetCurrentSentence(string textName)
         {
             int PSNLCount = GameManager.Instance.pickSelectNumberList.Count-1;// 選択肢を選んだナンバーを保管するリストの要素数-1
-            if(GameManager.Instance.selectTextLineNumber >= GameManager.Instance.userScriptSelectTextManager.textToSentencesList[textName][GameManager.Instance.pickSelectNumberList[PSNLCount]].Count) // シナリオテキストを読み切っていたら空白を返す
+            // 選択肢シナリオテキストの現在の行が、選んだ選択肢テキストの最大行以上になったら空白を返す
+            // つまりシナリオテキストを読み切っていたら空白を返す
+            if(GameManager.Instance.selectTextLineNumber >= GameManager.Instance.userScriptSelectTextManager.textToSentencesList[textName][GameManager.Instance.pickSelectNumberList[PSNLCount]].Count)
             {
                 return " ";
             }
@@ -116,7 +118,11 @@ namespace AdventureGame
                     GameManager.Instance.selectManager.SpawnSelectPrefab(words[1], words[2]);
                     break;
                 case "&actchar":
-                    GameManager.Instance.characterManager.ChangeCharacterImage(words[1], words[2]);
+                    if(words.Length == 4)
+                    {
+                        GameManager.Instance.characterManager.ChangeCharacterImage(words[1], words[2], words[3]);
+                    }
+                    else GameManager.Instance.characterManager.ChangeCharacterImage(words[1], words[2]);
                     break;
                 case "&nonactchar":
                     GameManager.Instance.characterManager.NonActiveCharacterImage(words[1]);

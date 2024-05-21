@@ -68,7 +68,11 @@ namespace AdventureGame
                     (GameManager.Instance.selectTextController.ClickToNextLineCoroutine(words[2]));
                     break;
                 case "&actchar":
-                    GameManager.Instance.characterManager.ChangeCharacterImage(words[1], words[2]);
+                    if(words.Length == 4)
+                    {
+                        GameManager.Instance.characterManager.ChangeCharacterImage(words[1], words[2], words[3]);
+                    }
+                    else GameManager.Instance.characterManager.ChangeCharacterImage(words[1], words[2]);
                     break;
                 case "&nonactchar":
                     GameManager.Instance.characterManager.NonActiveCharacterImage(words[1]);
