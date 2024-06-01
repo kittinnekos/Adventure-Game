@@ -1,0 +1,4 @@
+&nonactchar 1
+&nonactchar 2
+&name ？
+ねぇ大丈夫？

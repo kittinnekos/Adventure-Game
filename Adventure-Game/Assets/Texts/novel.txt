@@ -1,20 +1,30 @@
 &img background1 backgroundObject
 &name 私
-&actchar 1 char1
+&actchar 1 hero
 あいうえおあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
 &img eventCG1 eventObject
+&nonactchar 1
+&select 2 select0
 &name ???
 かきくけこいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+sasasasa
+&actchar 1 hero closeEye
+&actchar 2 brackHood
 &rmimg eventCG1
 &img eventCG2 eventObject
 &name 　
 &select 3 select1
 さしすせそ
 さささささ
+&name 私
+&actchar 1 figure
 &select 2 select2
 たちつてと
+&name ???
 たたたたた
-&select 1 select3
+&endselect 1 select3
+&name ???
 なにぬねの
 ななななな
-&end 1
+
+     
