@@ -8,6 +8,7 @@ namespace AdventureGame
     {
         [SerializeField] GameObject canvas;
         [SerializeField] GameObject selectPrefab;
+        [SerializeField] TextAsset selectText0;
         [SerializeField] TextAsset selectText1;
         [SerializeField] TextAsset selectText2;
         [SerializeField] TextAsset selectText3;
@@ -22,6 +23,7 @@ namespace AdventureGame
         void Awake()
         {   
             textToTextFile = new Dictionary<string, TextAsset>();
+            textToTextFile.Add("select0", selectText0);
             textToTextFile.Add("select1", selectText1);
             textToTextFile.Add("select2", selectText2);
             textToTextFile.Add("select3", selectText3);

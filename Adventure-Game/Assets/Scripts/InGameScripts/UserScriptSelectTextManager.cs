@@ -8,7 +8,8 @@ namespace AdventureGame
     public class UserScriptSelectTextManager : MonoBehaviour
     {
         // UserScriptManagerを真似て汎用性の高いスクリプトを作成する
-        // TextAsset配列には各選択肢ごとに表示させるテキストを格納する。例えばselectTextFile1は一回目の選択肢で、
+        // TextAsset配列には各選択肢ごとに表示させるシナリオテキストを格納する。
+        [SerializeField] TextAsset[] selectTextFile0;
         [SerializeField] TextAsset[] selectTextFile1;
         [SerializeField] TextAsset[] selectTextFile2;
         [SerializeField] TextAsset[] selectTextFile3;
@@ -16,12 +17,26 @@ namespace AdventureGame
         [System.NonSerialized] public Dictionary<string, List<List<string>>> textToSentencesList;
 
         // 一行の文が入る二次元リスト
+        List<List<string>> sentences0 = new List<List<string>>();
         List<List<string>> sentences1 = new List<List<string>>();
         List<List<string>> sentences2 = new List<List<string>>();
         List<List<string>> sentences3 = new List<List<string>>();
 
         void Awake()
         {
+            // 選択肢０の格納処理
+            for(int i = 0;i < selectTextFile0.Length;i++)
+            {
+                StringReader reader = new StringReader(selectTextFile0[i].text);
+                List<string> sentence = new List<string>();
+                while (reader.Peek() != -1) // テキストが末端になるまで繰り返す
+                {
+                    string line = reader.ReadLine(); // 変数に一行ずつ格納している
+                    sentence.Add(line);
+                }
+                sentences0.Add(sentence);
+            }
+
             // 選択肢１の格納処理
             for(int i = 0;i < selectTextFile1.Length;i++)
             {
@@ -62,6 +77,7 @@ namespace AdventureGame
             }
 
             textToSentencesList = new Dictionary<string, List<List<string>>>();
+            textToSentencesList.Add("select0", sentences0);
             textToSentencesList.Add("select1", sentences1);
             textToSentencesList.Add("select2", sentences2);
             textToSentencesList.Add("select3", sentences3);
@@ -112,7 +128,7 @@ namespace AdventureGame
                     GameManager.Instance.speakerNameTextManager.DisplaySpeakerNameText(words[1]);
                     break;
                 case "&end":
-                    GameManager.Instance.changeSceneManager.ChangeScene(words[1]);
+                    GameManager.Instance.changeEndingSceneManager.ChangeEndingScene();
                     break;
                 case "&select":
                     GameManager.Instance.selectManager.SpawnSelectPrefab(words[1], words[2]);

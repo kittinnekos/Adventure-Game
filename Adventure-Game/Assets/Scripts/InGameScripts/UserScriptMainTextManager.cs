@@ -59,13 +59,21 @@ namespace AdventureGame
                     GameManager.Instance.speakerNameTextManager.DisplaySpeakerNameText(words[1]);
                     break;
                 case "&end":
-                    GameManager.Instance.changeSceneManager.ChangeScene(words[1]);
+                    GameManager.Instance.changeEndingSceneManager.ChangeEndingScene();
                     break;
                 case "&select":
                     GameManager.Instance.selectManager.SpawnSelectPrefab(words[1], words[2]);
                     // selectTextControllerのコルーチンを始める
                     coroutine = GameManager.Instance.userScriptSelectTextManager.StartCoroutine
                     (GameManager.Instance.selectTextController.ClickToNextLineCoroutine(words[2]));
+                    break;
+                case "&endselect":
+                    GameManager.Instance.changeEndingSceneManager.Ending(); // 選択肢を元にエンディングナンバーを保管する
+                    Debug.Log(MasterData.Instance.EndingNumber);//デバック
+                    GameManager.Instance.selectManager.SpawnSelectPrefab("1", "select3");
+                    StartCoroutine(GameManager.Instance.fadeIn_FadeOutManager.FadeOut_FadeIn());
+                    // selectTextControllerのコルーチンを始める
+                    coroutine = StartCoroutine(GameManager.Instance.selectTextController.ClickToNextLineCoroutine("select3", true));
                     break;
                 case "&actchar":
                     if(words.Length == 4)

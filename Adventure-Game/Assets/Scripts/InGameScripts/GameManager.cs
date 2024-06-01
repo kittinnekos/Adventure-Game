@@ -14,7 +14,9 @@ namespace AdventureGame
         public SelectTextController selectTextController;
         public ImageManager imageManager;
         public SpeakerNameTextManager speakerNameTextManager;
-        public ChangeSceneManager changeSceneManager;
+        public ChangeEndingSceneManager changeEndingSceneManager;
+        public FadeIn_FadeOutManager fadeIn_FadeOutManager;
+        public EndingScenarioTextManager endingScenarioTextManager;
         public SelectManager selectManager;
         public CharacterManager characterManager;
 
@@ -23,6 +25,8 @@ namespace AdventureGame
 
         // ユーザースクリプト選択テキストの、今の行の数値。クリック（タップ）のたびに1ずつ増える
         [System.NonSerialized] public int selectTextLineNumber;
+
+        [System.NonSerialized] public bool isFadeIn;
 
         // エンディング用に選択肢を選んだナンバーを保管するリスト
         [System.NonSerialized] public List<int> pickSelectNumberList;
@@ -33,6 +37,7 @@ namespace AdventureGame
             Instance = this;
             lineNumber = 0;
             selectTextLineNumber = 0;
+            isFadeIn = false;
             pickSelectNumberList = new List<int> ();
         }
     }
