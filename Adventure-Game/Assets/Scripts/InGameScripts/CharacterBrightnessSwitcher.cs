@@ -73,5 +73,90 @@ namespace AdventureGame
                 }
             }
         }
+
+        public void CharBrightnessSwitcher(List<GameObject> charImageObjList)
+        {
+            Text nameText = speakerNameTextObj.GetComponent<Text>();
+
+            foreach (GameObject charImageObj in charImageObjList)
+            {
+                if(charImageObj == null) Debug.LogError("Object null Error");
+
+                if(charImageObj.activeSelf == false) continue;
+
+                Image image = charImageObj.GetComponent<Image>();
+
+                //※ 話し手の名前が入る
+                switch(nameText.text)
+                {
+                    case "　":
+                        image.material.color = dark;
+                        break;
+                    case "私":
+                        // オブジェクトのタグが特定の名前場合は画像を明るくする(表情あり、なし両方)。違う場合は画像を暗くする
+                        // 人影
+                        if(charImageObj.tag == "人影") {image.material.color = clear;}
+
+                        // 勇者
+                        else if(charImageObj.tag == "勇者") {image.material.color = clear;} 
+
+                        // 人斬り
+                        else if(charImageObj.tag == "人斬り") {image.material.color = clear;} 
+
+                        // 操り人形
+                        else if(charImageObj.tag == "操り人形") {image.material.color = clear;} 
+
+                        // 囚人
+                        else if(charImageObj.tag == "囚人") {image.material.color = clear;} 
+
+                        // 転生者
+                        else if(charImageObj.tag == "転生者") {image.material.color = clear;} 
+
+                        // 市民
+                        else if(charImageObj.tag == "市民") {image.material.color = clear;} 
+
+                        else {image.material.color = dark;}
+                        break;
+                    case "???":
+                    case "黒フード":
+                        if(charImageObj.tag == "黒フード") {image.material.color = clear;}
+                        else {image.material.color = dark;}
+                        break;
+
+                    case "魔王":
+                        if(charImageObj.tag == "魔王") {image.material.color = clear;} 
+                        else {image.material.color = dark;}
+                        break;
+                    
+                    case "老人":
+                        if(charImageObj.tag == "老人") {image.material.color = clear;} 
+                        else {image.material.color = dark;}
+                        break;
+
+                    case "キャサリン":
+                        if(charImageObj.tag == "キャサリン") {image.material.color = clear;} 
+                        else {image.material.color = dark;}
+                        break;
+
+                    case "ビトレイ":
+                        if(charImageObj.tag == "ビトレイ") {image.material.color = clear;} 
+                        else {image.material.color = dark;}
+                        break;
+                    
+                    case "?":
+                    case "神":
+                        if(charImageObj.tag == "神") {image.material.color = clear;} 
+                        else {image.material.color = dark;}
+                        break;
+
+                    case "監視ロボ":
+                        if(charImageObj.tag == "監視ロボ") {image.material.color = clear;} 
+                        else {image.material.color = dark;}
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }
