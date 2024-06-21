@@ -28,10 +28,9 @@ namespace AdventureGame
                 FadePanel.color = imageColor;
                 yield return null;
             }
-            Debug.Log("success");
         }
 
-        // フェードアウトし、
+        // フェードアウトし、waitTime分待ってからフェードインする
         public IEnumerator FadeOut_FadeIn(float fadeTime = 1f, float waitTime = 1f)
         {
             bool isFadeSuccess = false;
