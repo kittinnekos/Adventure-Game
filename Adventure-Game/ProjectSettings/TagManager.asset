@@ -3,7 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - "\u52C7\u8005"
+  - "\u9ED2\u30D5\u30FC\u30C9"
+  - "\u4EBA\u5F71"
+  - "\u9B54\u738B"
+  - "\u4EBA\u65AC\u308A"
+  - "\u8001\u4EBA"
+  - "\u64CD\u308A\u4EBA\u5F62"
+  - "\u30AD\u30E3\u30B5\u30EA\u30F3"
+  - "\u56DA\u4EBA"
+  - "\u30D3\u30C8\u30EC\u30A4"
+  - "\u8EE2\u751F\u8005"
+  - "\u795E"
+  - "\u5E02\u6C11"
+  - "\u76E3\u8996\u30ED\u30DC"
   layers:
   - Default
   - TransparentFX
