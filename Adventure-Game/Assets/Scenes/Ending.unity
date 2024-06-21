@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 567755049}
   - component: {fileID: 567755048}
   - component: {fileID: 567755047}
+  - component: {fileID: 567755050}
   m_Layer: 5
   m_Name: EndingName
   m_TagString: Untagged
@@ -296,7 +297,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: e83bb65a2de8f984581793302353333f, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
@@ -336,6 +337,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 800, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &567755050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567755046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &668036244
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +483,7 @@ GameObject:
   - component: {fileID: 1007993922}
   - component: {fileID: 1007993924}
   - component: {fileID: 1007993923}
+  - component: {fileID: 1007993925}
   m_Layer: 5
   m_Name: EndingNumber
   m_TagString: Untagged
@@ -514,7 +531,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: e83bb65a2de8f984581793302353333f, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
@@ -535,6 +552,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007993921}
   m_CullTransparentMesh: 1
+--- !u!114 &1007993925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007993921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1351883748
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,13 +832,13 @@ MonoBehaviour:
   backGroundImage: {fileID: 845651541}
   endSpriteDatas:
   - endNum: 0
-    sprite: {fileID: 21300000, guid: d900e5e958f59d742bbbbd887cbf3fa5, type: 3}
+    sprite: {fileID: 21300000, guid: c018581a5c78c3c42bd54cfae5df69db, type: 3}
   - endNum: 1
-    sprite: {fileID: 21300000, guid: ee4a0eeed212af7409610c841096b3cd, type: 3}
+    sprite: {fileID: 21300000, guid: 11d299941ba4c1546a948e1f6020d737, type: 3}
   - endNum: 2
-    sprite: {fileID: 21300000, guid: abd86f9fb6eb9a24fbcf3fe8bb065679, type: 3}
+    sprite: {fileID: 21300000, guid: 71a8805566f3df246b160eec5f280a5d, type: 3}
   - endNum: 3
-    sprite: {fileID: 21300000, guid: 2cb422049997eea4b82aecf82672f690, type: 3}
+    sprite: {fileID: 21300000, guid: 86a9996a14844204fb6f39dfb91c7d36, type: 3}
   - endNum: 4
     sprite: {fileID: 21300000, guid: d900e5e958f59d742bbbbd887cbf3fa5, type: 3}
   - endNum: 5
@@ -860,7 +892,7 @@ MonoBehaviour:
   endingNametext: {fileID: 567755047}
   endNameDatas:
   - endNum: 0
-    endName: "\u4F55\u7269\u3067\u3082\u306A\u3044"
+    endName: "\u4F55\u8005\u3067\u3082\u306A\u3044"
   - endNum: 1
     endName: "\u52C7\u8005"
   - endNum: 2
@@ -872,7 +904,7 @@ MonoBehaviour:
   - endNum: 5
     endName: "\u8EE2\u751F\u8005"
   - endNum: 6
-    endName: "\u5236\u4F5C\u4E2D"
+    endName: "\u5E02\u6C11"
 --- !u!1 &1635836049
 GameObject:
   m_ObjectHideFlags: 0
