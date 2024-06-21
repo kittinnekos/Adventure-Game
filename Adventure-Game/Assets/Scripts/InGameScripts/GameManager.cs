@@ -19,6 +19,7 @@ namespace AdventureGame
         public EndingScenarioTextManager endingScenarioTextManager;
         public SelectManager selectManager;
         public CharacterManager characterManager;
+        public SoundManager soundManager;
 
         // ユーザースクリプトの、今の行の数値。クリック（タップ）のたびに1ずつ増える
         [System.NonSerialized] public int lineNumber;
