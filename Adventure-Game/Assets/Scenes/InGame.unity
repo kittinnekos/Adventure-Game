@@ -405,11 +405,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3319e331e5d97c49aac7c403790c48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backGroundData:
+  - name: "\u30E1\u30A4\u30F3\u80CC\u666F"
+    sprite: {fileID: 21300000, guid: d900e5e958f59d742bbbbd887cbf3fa5, type: 3}
+  - name: "\u30A8\u30F3\u30C91\u80CC\u666F"
+    sprite: {fileID: 21300000, guid: 83c94d72328c13a4b811489dd75d73c1, type: 3}
+  - name: "\u30A8\u30F3\u30C92\u80CC\u666F"
+    sprite: {fileID: 21300000, guid: 50b2dcc22aed49c43b1a8cc388e2e14b, type: 3}
+  - name: "\u30A8\u30F3\u30C93\u80CC\u666F"
+    sprite: {fileID: 21300000, guid: 7eacd18655ffc764180e897799fd7dd6, type: 3}
+  - name: "\u30A8\u30F3\u30C94\u80CC\u666F"
+    sprite: {fileID: 21300000, guid: 6abbf2a2db70f8a45b5790e68d2ea8bb, type: 3}
+  - name: "\u30A8\u30F3\u30C95\u80CC\u666F"
+    sprite: {fileID: 21300000, guid: 42fab466a1894ae478b6e3c51a1c6c1d, type: 3}
+  - name: "\u30A8\u30F3\u30C96\u80CC\u666F"
+    sprite: {fileID: 21300000, guid: 7fcbe61d54751ac4da947c367a6e2675, type: 3}
   _background1: {fileID: 21300000, guid: d900e5e958f59d742bbbbd887cbf3fa5, type: 3}
-  _eventCG1: {fileID: 21300000, guid: abd86f9fb6eb9a24fbcf3fe8bb065679, type: 3}
-  _eventCG2: {fileID: 21300000, guid: 2cb422049997eea4b82aecf82672f690, type: 3}
   _backgroundObject: {fileID: 827427179}
-  _eventObject: {fileID: 62661957}
   _imagePrefab: {fileID: 7600204153646455336, guid: 71354980fe0d27a418ec2db65b7cfda4, type: 3}
 --- !u!4 &411507778
 Transform:
@@ -1376,7 +1388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1417,8 +1429,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 1.7600098}
+  m_SizeDelta: {x: 21.18, y: 24.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1677095149
 GameObject:
@@ -1548,7 +1560,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1866734090}
   - component: {fileID: 1866734092}
-  - component: {fileID: 1866734091}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -1571,19 +1582,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 291008474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1866734091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866734089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7174d463bea211c4889bf74bcfe7413c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundManager: {fileID: 1866734092}
 --- !u!114 &1866734092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1597,10 +1595,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDataBGM:
-  - name: "\u6700\u521D\u306EBGM"
-    audioClip: {fileID: 8300000, guid: 7f6432b5524ccd242a687f7f79decf79, type: 3}
-  - name: "\u4E8C\u3064\u76EE\u306EBGM"
-    audioClip: {fileID: 8300000, guid: 4c3b9bf2674a16a4dad5d4857a9cdf98, type: 3}
+  - name: "\u30E1\u30A4\u30F3"
+    audioClip: {fileID: 8300000, guid: 1fed054680ecdf84da752c3050032951, type: 3}
+  - name: "\u30A8\u30F3\u30C90"
+    audioClip: {fileID: 8300000, guid: da8f392794e49864d95af7e4c6399960, type: 3}
+  - name: "\u30A8\u30F3\u30C91"
+    audioClip: {fileID: 8300000, guid: 0de09fd6c3e95894db9736fd633877ae, type: 3}
+  - name: "\u30A8\u30F3\u30C92\u7A4F\u3084\u304B"
+    audioClip: {fileID: 8300000, guid: 9bbdf7af12928b04e85d46b7fe12d3d2, type: 3}
+  - name: "\u30A8\u30F3\u30C92\u6050\u6016"
+    audioClip: {fileID: 8300000, guid: c8c4d745b3d67084ca59b06f00292446, type: 3}
+  - name: "\u30A8\u30F3\u30C93"
+    audioClip: {fileID: 8300000, guid: 100cca0fb2f0f6b4ea90e8c4bfb6cecc, type: 3}
+  - name: "\u30A8\u30F3\u30C95"
+    audioClip: {fileID: 8300000, guid: f745e28460b64894fb68da7ab14992d2, type: 3}
   soundDataSE:
   - name: "\u30AF\u30EA\u30C3\u30AF\u97F3"
     audioClip: {fileID: 8300000, guid: b113f735afe3ab64d94af9ad5311bdca, type: 3}
@@ -1610,14 +1618,24 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: ee65f80f385ec0e4b9f5939f639a0250, type: 3}
   - name: "\u9354\u8FEB\u308A\u5408\u3044\u306E\u97F3"
     audioClip: {fileID: 8300000, guid: 5aec1daac6103d648b33f63ca3eedee5, type: 3}
+  - name: "\u6D88\u6EC5\u97F3"
+    audioClip: {fileID: 8300000, guid: 1c306e3836ba2d64d843090287da5a02, type: 3}
+  - name: "\u30AC\u30B5\u30B4\u30BD\u97F3"
+    audioClip: {fileID: 8300000, guid: 7097ae4d1f28bbf4ab6b010b7d483121, type: 3}
   - name: "\u5973\u6027\u306E\u60B2\u9CF4"
-    audioClip: {fileID: 8300000, guid: ac68bc5834840b647929382698cc3dd5, type: 3}
+    audioClip: {fileID: 8300000, guid: 25511b4e4fa9e094983df8ec694f796a, type: 3}
+  - name: "\u6FC0\u3057\u3044\u547C\u5438"
+    audioClip: {fileID: 8300000, guid: 9cec767269518b940b1981a047fd5f5d, type: 3}
   - name: "\u8D70\u308B\u97F3"
     audioClip: {fileID: 8300000, guid: 8f729c931adc0cd4abbf7017ea2c070b, type: 3}
+  - name: "\u885D\u7A81\u97F3"
+    audioClip: {fileID: 8300000, guid: cc888267144d10f4197e87a36ebf1264, type: 3}
   - name: "\u9F13\u52D5\u97F3"
     audioClip: {fileID: 8300000, guid: dc40ca86c62fcef40bd9dba607bf6372, type: 3}
   - name: "\u7206\u767A\u97F3"
     audioClip: {fileID: 8300000, guid: f0f387ea65c90b74ba4c59f72ba23650, type: 3}
+  - name: "\u9B54\u738B\u306E\u7B11\u3044\u58F0"
+    audioClip: {fileID: 8300000, guid: f7aaeb55ff4d6534b93f26cb0aa9e4f5, type: 3}
   - name: "\u65AC\u308B\u97F3"
     audioClip: {fileID: 8300000, guid: 93dddb5114b378f47bc7d0ff78917546, type: 3}
   - name: "\u5E02\u6C11\u306E\u6012\u53F7"
@@ -1626,6 +1644,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 49f96f093093d264692098532dc0c188, type: 3}
   - name: "\u5FC3\u96FB\u56F3\u306E\u97F3"
     audioClip: {fileID: 8300000, guid: 9b9def852822fd941b06249c84ccd8ce, type: 3}
+  - name: "\u7159\u306E\u97F3"
+    audioClip: {fileID: 8300000, guid: 8e967b5f253dd904c8b2671aae3a345a, type: 3}
 --- !u!1 &1966524797
 GameObject:
   m_ObjectHideFlags: 0

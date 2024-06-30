@@ -24,9 +24,13 @@ namespace AdventureGame
 
         private Dictionary<string, SoundData> soundDictionary = new Dictionary<string, SoundData>();
 
+        private float maxVolume = 0.4f;
+        private float minVolume = 0;
+
         void Awake()
         {
             audioSourceBGM = gameObject.AddComponent<AudioSource>();
+            audioSourceBGM.volume = maxVolume;
 
             // ディキショナリーに追加
             foreach(SoundData soundData in soundDataBGM)
@@ -38,6 +42,7 @@ namespace AdventureGame
             for(int i = 0;i < audioSourceSEList.Length;i++)
             {
                 audioSourceSEList[i] = gameObject.AddComponent<AudioSource>();
+                audioSourceSEList[i].volume = maxVolume;
             }
 
             // ディキショナリーに追加
@@ -80,12 +85,32 @@ namespace AdventureGame
             if(soundDictionary.TryGetValue(name, out SoundData soundData)) // ディキショナリーからキーで検索
             {
                 // BGMをフェードアウトさせ、BGMを切り替える
-                StartCoroutine(FadeOutSound(soundData));
+                StartCoroutine(ChangeBGM(soundData));
             }
             else
             {
                 Debug.LogWarning($"{name} is no Dictionary");
             }
+        }
+
+        public void RePlayBGM()
+        {
+            StartCoroutine(FadeInBGM_Play());
+        }
+
+        public void StopBGM()
+        {
+            StartCoroutine(FadeOutBGM_Stop());
+        }
+
+        public void UnPauseBGM()
+        {
+            StartCoroutine(FadeInBGM_UnPause());
+        }
+
+        public void PauseBGM()
+        {
+            StartCoroutine(FadeOutBGM_Pause());
         }
 
         // SE関数群
@@ -121,18 +146,68 @@ namespace AdventureGame
             }
         }
 
-        // TODO フェードアウトサウンド
-        private IEnumerator FadeOutSound(SoundData soundData)
+        // BGMを切り替えるコルーチン
+        private IEnumerator ChangeBGM(SoundData soundData)
         {
-            while(!Mathf.Approximately(audioSourceBGM.volume, 0))
+            if(audioSourceBGM.isPlaying)
             {
-                float changePerFrame = Time.deltaTime/0.5f;
-                audioSourceBGM.volume = Mathf.MoveTowards(audioSourceBGM.volume, 0, changePerFrame);
-                yield return null;
+                while(!Mathf.Approximately(audioSourceBGM.volume, minVolume))
+                {
+                    float changePerFrame = Time.deltaTime/0.5f;
+                    audioSourceBGM.volume = Mathf.MoveTowards(audioSourceBGM.volume, minVolume, changePerFrame);
+                    yield return null;
+                }
+                audioSourceBGM.Stop();
             }
             audioSourceBGM.clip = soundData.audioClip;
-            audioSourceBGM.volume = 1f;
+            StartCoroutine(FadeInBGM_Play());
+        }
+
+        // BGMをストップ・プレイするフェードイン、アウトコルーチン
+        private IEnumerator FadeInBGM_Play()
+        {
+            audioSourceBGM.volume = 0f;
             audioSourceBGM.Play();
+            while(!Mathf.Approximately(audioSourceBGM.volume, maxVolume))
+            {
+                float changePerFrame = Time.deltaTime/0.5f;
+                audioSourceBGM.volume = Mathf.MoveTowards(audioSourceBGM.volume, maxVolume, changePerFrame);
+                yield return null;
+            }
+        }
+        private IEnumerator FadeOutBGM_Stop()
+        {
+            while(!Mathf.Approximately(audioSourceBGM.volume, minVolume))
+            {
+                float changePerFrame = Time.deltaTime/0.5f;
+                audioSourceBGM.volume = Mathf.MoveTowards(audioSourceBGM.volume, minVolume, changePerFrame);
+                yield return null;
+            }
+            audioSourceBGM.Stop();
+        }
+
+        // BGMをポーズ・アンポーズするフェードイン、アウトコルーチン
+        public IEnumerator FadeOutBGM_Pause()
+        {
+            while(!Mathf.Approximately(audioSourceBGM.volume, minVolume))
+            {
+                float changePerFrame = Time.deltaTime/0.5f;
+                audioSourceBGM.volume = Mathf.MoveTowards(audioSourceBGM.volume, minVolume, changePerFrame);
+                yield return null;
+            }
+            audioSourceBGM.Pause();
+        }
+
+        public IEnumerator FadeInBGM_UnPause()
+        {
+            audioSourceBGM.volume = 0f;
+            audioSourceBGM.UnPause();
+            while(!Mathf.Approximately(audioSourceBGM.volume, maxVolume))
+            {
+                float changePerFrame = Time.deltaTime/0.5f;
+                audioSourceBGM.volume = Mathf.MoveTowards(audioSourceBGM.volume, maxVolume, changePerFrame);
+                yield return null;
+            }
         }
     }
 }
