@@ -1,5 +1,6 @@
 &nonactchar 1
 &nonactchar 2
+&img エンド6背景
 &name ?
 &actchar 1 市民 眠り
 &SE 心電図の音
@@ -47,7 +48,7 @@
 再教育チームの準備が整いました 麻酔開始
 &name 　
 &actchar 1 市民 眠り
-&SE 煙
+&SE 煙の音
 徐々に意識を保てなくなり目を瞑る
 薄れゆく意識の中 ロボの声が聞こえた
 &name 監視ロボ
