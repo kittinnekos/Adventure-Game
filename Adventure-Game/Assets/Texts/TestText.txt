@@ -1,0 +1,13 @@
+&actchara 勇者 通常
+テスト
+&actchara 魔王 通常
+テスト２
+&changeExpression 勇者 負傷
+テスト３
+&changeExpression 勇者 怒り
+テスト４
+&nonactchara 勇者
+&nonactchara 魔王
+テスト５
+
+     
