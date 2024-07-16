@@ -7,16 +7,21 @@ namespace AdventureGame
 {
     public class ImageManager : MonoBehaviour
     {
+        [System.Serializable]
+        public class BackGroundData
+        {
+            public string name;
+            public Sprite sprite;
+        }
+
+        public BackGroundData[] backGroundData;
+
         [SerializeField] Sprite _background1;
-        [SerializeField] Sprite _eventCG1;
-        [SerializeField] Sprite _eventCG2;
         [SerializeField] GameObject _backgroundObject;
-        [SerializeField] GameObject _eventObject;
         [SerializeField] GameObject _imagePrefab;
 
         // テキストファイルから、文字列でSpriteやGameObjectを扱えるようにするための辞書
         Dictionary<string, Sprite> _textToSprite;
-        Dictionary<string, GameObject> _textToParentObject;
 
         // 操作したいPrefabを指定できるようにするための辞書
         Dictionary<string, GameObject> _textToSpriteObject;
@@ -25,24 +30,21 @@ namespace AdventureGame
         {
             _textToSprite = new Dictionary<string, Sprite>();
             _textToSprite.Add("background1", _background1);
-            _textToSprite.Add("eventCG1", _eventCG1);
-            _textToSprite.Add("eventCG2", _eventCG2);
-
-            _textToParentObject = new Dictionary<string, GameObject>();
-            _textToParentObject.Add("backgroundObject", _backgroundObject);
-            _textToParentObject.Add("eventObject", _eventObject);
+            foreach (BackGroundData BGData in backGroundData)
+            {
+                _textToSprite.Add(BGData.name, BGData.sprite);
+            }
 
             _textToSpriteObject = new Dictionary<string, GameObject>();
         }
 
-        public void PutImage(string imageName, string parentObjectName)
+        public void PutImage(string imageName)
         {
             Sprite image = _textToSprite[imageName];
-            GameObject parentObject = _textToParentObject[parentObjectName];
 
             Vector2 position = new Vector2(0, 0);
             Quaternion rotation = Quaternion.identity;
-            Transform parent = parentObject.transform;
+            Transform parent = _backgroundObject.transform;
             GameObject item = Instantiate(_imagePrefab, position, rotation, parent);
             item.GetComponent<Image>().sprite = image;
 

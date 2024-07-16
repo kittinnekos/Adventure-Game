@@ -118,21 +118,25 @@ namespace AdventureGame
             string[] words = sentence.Split(' ');
             switch(words[0])
             {
+                /*背景画像表示コマンド*/
                 case "&img":
-                    GameManager.Instance.imageManager.PutImage(words[1], words[2]);
+                    GameManager.Instance.imageManager.PutImage(words[1]);
                     break;
                 case "&rmimg":
                     GameManager.Instance.imageManager.RemoveImage(words[1]);
                     break;
+                
+                /*話し手の名前切り替えコマンド*/
                 case "&name":
                     GameManager.Instance.speakerNameTextManager.DisplaySpeakerNameText(words[1]);
                     break;
+
+                /*エンディングシーン切り替えコマンド*/
                 case "&end":
                     GameManager.Instance.changeEndingSceneManager.ChangeEndingScene();
                     break;
-                case "&select":
-                    GameManager.Instance.selectManager.SpawnSelectPrefab(words[1], words[2]);
-                    break;
+
+                /*キャラクター表示コマンド*/
                 case "&actchar":
                     if(words.Length == 4)
                     {
@@ -148,8 +152,22 @@ namespace AdventureGame
                 case "&nonactchar":
                     GameManager.Instance.characterManager.NonActiveCharacterImage(words[1]);
                     break;
+
+                /*BGM,SEコマンド*/
                 case "&changeBGM":
                     GameManager.Instance.soundManager.ChangeBGM(words[1]);
+                    break;
+                case "&replayBGM":
+                    GameManager.Instance.soundManager.RePlayBGM();
+                    break;
+                case "&stopBGM":
+                    GameManager.Instance.soundManager.StopBGM();
+                    break;
+                case "&unpauseBGM":
+                    GameManager.Instance.soundManager.UnPauseBGM();
+                    break;
+                case "&pauseBGM":
+                    GameManager.Instance.soundManager.PauseBGM();
                     break;
                 case "&SE":
                     GameManager.Instance.soundManager.PlaySE(words[1]);

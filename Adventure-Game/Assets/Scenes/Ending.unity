@@ -832,7 +832,7 @@ MonoBehaviour:
   backGroundImage: {fileID: 845651541}
   endSpriteDatas:
   - endNum: 0
-    sprite: {fileID: 21300000, guid: c018581a5c78c3c42bd54cfae5df69db, type: 3}
+    sprite: {fileID: 21300000, guid: 6e7c9c752e7667e4e9d4e9bf7bebc262, type: 3}
   - endNum: 1
     sprite: {fileID: 21300000, guid: 11d299941ba4c1546a948e1f6020d737, type: 3}
   - endNum: 2
@@ -840,11 +840,11 @@ MonoBehaviour:
   - endNum: 3
     sprite: {fileID: 21300000, guid: 86a9996a14844204fb6f39dfb91c7d36, type: 3}
   - endNum: 4
-    sprite: {fileID: 21300000, guid: d900e5e958f59d742bbbbd887cbf3fa5, type: 3}
+    sprite: {fileID: 21300000, guid: f0b67f2796c611b449afd03015e30c09, type: 3}
   - endNum: 5
-    sprite: {fileID: 21300000, guid: ee4a0eeed212af7409610c841096b3cd, type: 3}
+    sprite: {fileID: 21300000, guid: 10fdb27735559414cab07ba89813558c, type: 3}
   - endNum: 6
-    sprite: {fileID: 21300000, guid: ee4a0eeed212af7409610c841096b3cd, type: 3}
+    sprite: {fileID: 21300000, guid: 6776f3301a088bc40850ad75643bfb8a, type: 3}
 --- !u!1 &1495245081
 GameObject:
   m_ObjectHideFlags: 0

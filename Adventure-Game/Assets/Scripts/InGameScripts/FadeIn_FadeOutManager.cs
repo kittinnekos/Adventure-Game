@@ -17,8 +17,13 @@ namespace AdventureGame
             imageColor = FadePanel.color;
         }
 
+        void Start()
+        {
+            StartCoroutine(Fade(0));
+        }
+
         // フェードインまたはフェードアウトのどちらかをする
-        // targetAlphaを0にするとフェードアウト、1にするとフェードインになる
+        // targetAlphaを1にするとフェードアウト、0にするとフェードインになる
         public IEnumerator Fade(float targetAlpha, float fadeTime = 1f)
         {
             while(!Mathf.Approximately(imageColor.a, targetAlpha)) // 透明度がほぼ等しくなるまで繰り返す
