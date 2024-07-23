@@ -18,9 +18,9 @@ namespace AdventureGame
         public FadeIn_FadeOutManager fadeIn_FadeOutManager;
         public EndingScenarioTextManager endingScenarioTextManager;
         public SelectManager selectManager;
-        public CharacterManager2 characterManager2;
+        public CharacterManager characterManager;
         public CharacterExpressionManager characterExpressionManager;
-        public CharacterBrightnessSwitcher2 characterBrightnessSwitcher2;
+        public CharacterBrightnessSwitcher characterBrightnessSwitcher;
         public SoundManager soundManager;
 
         // ユーザースクリプトの、今の行の数値。クリック（タップ）のたびに1ずつ増える

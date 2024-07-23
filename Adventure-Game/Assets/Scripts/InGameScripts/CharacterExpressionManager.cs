@@ -84,6 +84,7 @@ namespace AdventureGame
         {
             // 既にアクティブだった時コルーチンから抜ける
             if(childObject.activeSelf == true) yield break;
+            
             // アクティブな子オブジェクトをフェードアウト
             StartCoroutine(FadeOutExpression(parentRT));
             yield return null;

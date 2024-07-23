@@ -6,169 +6,196 @@ using UnityEngine.UI;
 namespace AdventureGame
 {
     public class CharacterManager : MonoBehaviour
-    {/*※のある部分はこのクラスやCharacterBrightnessSwitcherクラスに追加があった時に必ずチェックすること*/
-        // キャラ画像を表示させるオブジェクト
-        [SerializeField] GameObject charImageObj1;
-        [SerializeField] GameObject charImageObj2;
+    {
+        // キャラの名前とプレハブを格納するクラス
+        [System.Serializable]
+        public class CharaData
+        {
+            public string charaName;
+            public GameObject charaPrefab;
+        }
 
-        // TODO テスト部分始め
-        // 表情の名前とリスト用の値を保存するクラス
+        // 表情の名前とナンバーを格納するクラス
         [System.Serializable]
         public class ExpressionData
         {
             public string expressionName;
-            public int expressionNum;
+            public int expressionPosNum;// ナンバーはキャラクターオブジェクトからの位置を元に当てはめる。
         }
 
-        // インスペクター上で表情差分画像を保存するクラス
-        [System.Serializable]
-        public class CharSprite
-        {
-            public int expressionNum; // どの表情差分かを値で指定。ExpressionData内の値と合致させるように
-            public Sprite expressionSprite;
-        }
+        [System.NonSerialized] public Dictionary<string, GameObject> NameToPrefab = new Dictionary<string, GameObject>();
 
-        // インスペクター上でキャラの名前に合った画像を表情差分のリストで保存するクラス
-        [System.Serializable]
-        public class CharaData
-        {
-            public string charName;
-            public CharSprite[] charSprites;
-        }
-        // 表情差分を増やす、または減らす時この配列の要素数を増減させる
-        public ExpressionData[] expressionDatas = new ExpressionData[8];
+        [System.NonSerialized] public Dictionary<string, GameObject> NameToCharacterObject = new Dictionary<string, GameObject>();
 
-        // 表示させるキャラを増やす、または減らす時この配列の要素数を増減させる
-        public CharaData[] charaDatas = new CharaData[14];
-        // TODO テスト部分終わり
-    
-        //※ キャラ画像
-        [SerializeField] List<Sprite> blackHoodSpriteList; //黒フード画像リスト
-        [SerializeField] List<Sprite> figureSpriteList; // 人影画像リスト
-        [SerializeField] List<Sprite> heroSpriteList; // 勇者画像リスト
+        [System.NonSerialized] public Dictionary<string, int> expressionToNum = new Dictionary<string, int>();
 
-        //※ どのキャラ画像を取り出すかを示す定数ナンバー
-        public readonly int BLACK_HOOD = 0, FIGURE = 1, HELO = 2;
+        [SerializeField] GameObject CharacterObjects;
 
-        //※ 表情差分を取り出す用の定数ナンバー
-        public readonly int NO_EXPRESSION = 0, CLOSE_EYE = 1, TEXT_NUM = 2;
+        // インスペクター上で設定
+        public CharaData[] charaDatas;
+        public ExpressionData[] expressionDatas;
 
-        private CharacterBrightnessSwitcher characterBrightnessSwitcher;
-                
-        // 確認用キャラ画像オブジェクトリスト
-        List<GameObject> charImageObjList;
+        // インスタンス化したキャラクターオブジェクトを保管する配列(要素数は表示上限)
+        private GameObject[] characterObject = new GameObject[4];
 
-        // 確認用キャラ画像二次元リスト
-        List<List<Sprite>> charSprite2DList;
+        // カラーアルファ値の最大値と最低値
+        private float maxAlphaNum = 1f;
+        private float minAlphaNum = 0f;
 
-        Dictionary<string, GameObject> textToObject;
-        Dictionary<string, List<Sprite>> textToCharSpriteList;
-        Dictionary<(string,int), Sprite> testDictionary; // TODO テスト用
-        Dictionary<string, int> testExpressionDic; // TODO テスト用
-
+        private float fadeIn_OutExpressionTimer;
+        private float fadeIn_OutStandingPictureTimer = 0.2f;
 
         void Awake()
         {
-            characterBrightnessSwitcher = GetComponent<CharacterBrightnessSwitcher>();
-
-            // 確認用リストの初期化
-            charImageObjList = new List<GameObject>();
-            charImageObjList.Add(charImageObj1);
-            charImageObjList.Add(charImageObj2);
-
-            // TODO テスト部分始め
-            testDictionary = new Dictionary<(string, int),Sprite>();
-            testExpressionDic = new Dictionary<string,int>();
-            // インスペクター上に入力された画像の名前とCharSprite配列内の表情の値をキー、CharSprite配列内のspriteをバリューとする
+            fadeIn_OutExpressionTimer = GameManager.Instance.characterExpressionManager.fadeIn_OutExpressionTimer;
+            //int i = 0;
+            // ディキショナリーの初期化
             foreach(CharaData charaData in charaDatas)
             {
-                foreach(CharSprite charSprite in charaData.charSprites)
-                {
-                    Debug.Log(charaData.charName);
-                    testDictionary.Add((charaData.charName, charSprite.expressionNum), charSprite.expressionSprite);
-                }
+                // TODO 後のデバッグのため一時保存
+                // Debug.Log(charaData.charaName);
+                // Debug.Log(charaData.charaPrefab);
+                // Debug.Log(i);
+                // i++;
+                NameToPrefab.Add(charaData.charaName, charaData.charaPrefab);
             }
-
-            // インスペクター上に入力された表情の名前をキー、表情の値をバリューとする。これは変換用の連想配列
+            //int j = 0;
             foreach(ExpressionData expressionData in expressionDatas)
             {
-                testExpressionDic.Add(expressionData.expressionName, expressionData.expressionNum);
+                // TODO 後のデバッグのため一時保存
+                // Debug.Log(expressionData.expressionName);
+                // Debug.Log(j);
+                // j++;
+                expressionToNum.Add(expressionData.expressionName, expressionData.expressionPosNum);
             }
-            // TODO テスト部分終わり
-
-            // ※
-            charSprite2DList = new List<List<Sprite>>();
-            charSprite2DList.Add(blackHoodSpriteList);
-            charSprite2DList.Add(figureSpriteList);
-            charSprite2DList.Add(heroSpriteList);
-
-
-            // ディキショナリーの初期化
-            textToObject = new Dictionary<string, GameObject>();
-            textToObject.Add("1", charImageObj1);
-            textToObject.Add("2", charImageObj2);
-
-            // ※
-            textToCharSpriteList = new Dictionary<string, List<Sprite>>();
-            textToCharSpriteList.Add("hero",heroSpriteList);
-            textToCharSpriteList.Add("brackHood", blackHoodSpriteList);
-            textToCharSpriteList.Add("figure",figureSpriteList);
         }
-        void Start()
-        {
-            // 話し手の名前によってキャラの明暗度を変える関数
-            //characterBrightnessSwitcher.CharBrightnessSwitcher(charImageObjList, charSprite2DList);
-            characterBrightnessSwitcher.CharBrightnessSwitcher(charImageObjList);
-        }
+
         void Update()
         {
-            //characterBrightnessSwitcher.CharBrightnessSwitcher(charImageObjList, charSprite2DList);
-            characterBrightnessSwitcher.CharBrightnessSwitcher(charImageObjList);
+            GameManager.Instance.characterBrightnessSwitcher.CharaBrightnessSwitcher(characterObject);
         }
 
-        // 旧機能　キャラ画像を変更し、オブジェクトをアクティブにして表示させる
-        /*public void ChangeCharacterImage(string charObjNum, string imageName, string expression = "NoExpression")// デフォルト引数で表情を変えられるようにする
+        // 立ち絵をインスタンス化し、表情を付ける。
+        public void SpawnStandingPicture(string charaName, string expression)
         {
-            if(textToObject[charObjNum].activeSelf == false) textToObject[charObjNum].SetActive(true);
-            Image image = textToObject[charObjNum].GetComponent<Image>();
-            if(expression == "NoExpression")
+            for(int i = 0;i < characterObject.Length;i++)
             {
-                image.sprite = textToCharSpriteList[imageName][NO_EXPRESSION];
+                Debug.Log("Spawn Object Num." + i);
+                if(characterObject[i] != null) continue;
+                characterObject[i] = Instantiate(NameToPrefab[charaName], CharacterObjects.transform);
+
+                // ディキショナリーにインスタンス化したオブジェクトを追加
+                NameToCharacterObject.Add(charaName, characterObject[i]);
+                break;
             }
-            else
+            RectTransform objectRT = NameToCharacterObject[charaName].GetComponent<RectTransform>();
+            GameObject childObject = FindChildObject(objectRT, expression);
+            if(childObject == null) return;
+            // 立ち絵と表情をフェードインさせるコルーチン
+            StartCoroutine(FadeInStandingPictureANDExpression(NameToCharacterObject[charaName], childObject));
+        }
+
+        // 表情を変える
+        public void ChangeExpression(string charaName, string expression)
+        {
+            RectTransform objectRT = NameToCharacterObject[charaName].GetComponent<RectTransform>();
+            GameObject childObject = FindChildObject(objectRT, expression);
+            if(childObject == null) return;
+            
+            StartCoroutine(GameManager.Instance.characterExpressionManager.ChangeExpression(objectRT, childObject));
+        }
+
+        // 立ち絵をフェードアウト&削除
+        public void RemoveStandingPicture(string charaName)
+        {
+            // キャラクターオブジェクト配列内のオブジェクトとディキショナリー内のキャラクターオブジェクトを削除する。
+            StartCoroutine(FadeOutANDRemoveStandingPicture(charaName));
+        }
+
+        // 立ち絵の子オブジェクト（表情）を取得する。
+        private GameObject FindChildObject(RectTransform parentRT, string expression)
+        {
+            // 指定された表情をキーとし、親オブジェクトから子オブジェクトを取得して返す。
+            if(expressionToNum.ContainsKey(expression))
             {
-                switch(expression)
-                {
-                    case "closeEye":
-                        image.sprite = textToCharSpriteList[imageName][CLOSE_EYE];
-                        break;
-                    case "testNum":
-                        image.sprite = textToCharSpriteList[imageName][TEXT_NUM];
-                        break;
-                    default:
-                        break;
-                }
+                RectTransform childRT = parentRT.GetChild(expressionToNum[expression]) as RectTransform;
+                GameObject childObject = childRT.gameObject;
+                return childObject;
+            }
+            else 
+            {
+                Debug.LogWarning("Not expression" + expression);
+                return null;
             }
         }
-        */
 
-        // TODO テスト　キャラ画像を変更し、オブジェクトをアクティブにして表示させる
-        public void TestChangeCharacterImage(string charObjNum, string imageName, string expression = "表情なし")// デフォルト引数で表情を変えられるようにする
+        // 立ち絵のフェードイン
+        private IEnumerator FadeInStandingPicture(GameObject characterObject)
         {
-            if(textToObject[charObjNum].activeSelf == false) textToObject[charObjNum].SetActive(true);
-            textToObject[charObjNum].tag = imageName;
-            Image image = textToObject[charObjNum].GetComponent<Image>();
+            Image image = characterObject.GetComponent<Image>();
+            Color color = image.material.color;
+            color.a = 0;
 
-            // 連想配列のキーに「画像の名前」と「表情(連想配列によりintになる)」を入れてspriteを取得
-            image.sprite = testDictionary[(imageName, testExpressionDic[expression])];
+            while(!Mathf.Approximately(color.a, maxAlphaNum)) // 透明度がほぼ等しくなるまで繰り返す
+            {
+                float changePerFrame = Time.deltaTime/fadeIn_OutStandingPictureTimer;
+                color.a = Mathf.MoveTowards(color.a, maxAlphaNum, changePerFrame);
+                image.material.color = color;
+                yield return null;
+            }
         }
 
-        // キャラ画像をリセットし、オブジェクトを非アクティブにして非表示にさせる
-        public void NonActiveCharacterImage(string charObjNum)
+        // 立ち絵のフェードアウト
+        private IEnumerator FadeOutStandingPicture(GameObject characterObject)
         {
-            Image image = textToObject[charObjNum].GetComponent<Image>();
-            image.sprite = null;
-            textToObject[charObjNum].SetActive(false);
+            Image image = characterObject.GetComponent<Image>();
+            Color color = image.material.color;
+
+            while(!Mathf.Approximately(color.a, minAlphaNum)) // 透明度がほぼ等しくなるまで繰り返す
+            {
+                float changePerFrame = Time.deltaTime/fadeIn_OutStandingPictureTimer;
+                color.a = Mathf.MoveTowards(color.a, minAlphaNum, changePerFrame);
+                image.material.color = color;
+                yield return null;
+            }
+        }
+
+        // 立ち絵をフェードインさせて表情をフェードインさせる。
+        private IEnumerator FadeInStandingPictureANDExpression(GameObject characterObject, GameObject childObject)
+        {
+            // 立ち絵のフェードインコルーチン
+            StartCoroutine(FadeInStandingPicture(characterObject));
+            yield return new WaitForSeconds(fadeIn_OutStandingPictureTimer);// 立ち絵が表示されるまで待機
+            // 表情のフェードインコルーチン
+            StartCoroutine(GameManager.Instance.characterExpressionManager.FadeInExpression(childObject));
+        }
+
+        // 立ち絵をフェードアウトさせて削除する。
+        private IEnumerator FadeOutANDRemoveStandingPicture(string charaName)
+        {
+            for(int i = 0; i < characterObject.Length;i++)
+            {
+                // 削除する立ち絵を検索
+                if(characterObject[i] == null) continue;
+                Debug.Log("Object Active");
+                if(characterObject[i] != NameToCharacterObject[charaName]) continue;
+                Debug.Log("Success");
+                // 立ち絵のフェードアウト
+                RectTransform parentRT = characterObject[i].GetComponent<RectTransform>();
+                StartCoroutine(GameManager.Instance.characterExpressionManager.FadeOutExpression(parentRT));
+                yield return new WaitForSeconds(fadeIn_OutExpressionTimer);// 表情をフェードアウトさせるため待機。
+
+                // 立ち絵の削除
+                StartCoroutine(FadeOutStandingPicture(characterObject[i]));
+                yield return new WaitForSeconds(fadeIn_OutStandingPictureTimer);// 立ち絵をフェードアウトさせるため待機。
+                Destroy(characterObject[i]);
+                characterObject[i] = null;
+
+                // 配列内のオブジェクトを削除後ディキショナリー内のキャラクターオブジェクトを削除する
+                NameToCharacterObject.Remove(charaName);
+                Debug.Log(charaName + "is Remove");
+                break;
+            }
         }
     }
 }
