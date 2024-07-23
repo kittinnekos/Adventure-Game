@@ -1,8 +1,10 @@
 &name 私
-そんな人は居ない
+&changeExpression 人影 通常
+そんな人は居ない…と思う
 &name 黒フード
 おやおや さみしいですね
 &name 私
+&changeExpression 人影 怒り
 小言を言いたいがために聞いたのか？
 &name 黒フード
 まさか 思い出すお手伝いをしているだけですよ

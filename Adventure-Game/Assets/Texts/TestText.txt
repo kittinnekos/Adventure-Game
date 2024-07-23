@@ -1,13 +1,34 @@
+&img メイン背景
+&name 私
 &actchara 勇者 通常
-テスト
-&actchara 魔王 通常
+テスト 1
+&name キャサリン
+&actchara キャサリン 通常
 テスト２
 &changeExpression 勇者 負傷
-テスト３
+&changeExpression キャサリン 負傷
+負傷
 &changeExpression 勇者 怒り
-テスト４
+&changeExpression キャサリン 怒り
+怒り
+&changeExpression 勇者 驚き
+&changeExpression キャサリン 驚き
+驚き
+&name 私
+&changeExpression 勇者 困り
+&changeExpression キャサリン 困り
+困り
+&changeExpression 勇者 照れ
+&changeExpression キャサリン 照れ
+照れ
+&changeExpression 勇者 笑い
+&changeExpression キャサリン 笑い
+笑い
+&changeExpression 勇者 眠り
+&changeExpression キャサリン 眠り
+眠り
 &nonactchara 勇者
-&nonactchara 魔王
-テスト５
+&nonactchara キャサリン
+テスト終了
 
      

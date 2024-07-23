@@ -1,8 +1,6 @@
-&nonactchar 1
-&nonactchar 2
 &img エンド2背景
 &name 私
-&actchar 1 人斬り
+&actchara 人斬り 通常
 …どこだ？ここ
 &name 　
 目を覚ますと知らない部屋にいた
@@ -12,16 +10,16 @@
 貴方様を助けてから丸二日経って心配しましたぞ
 &name 私
 あんたは？
-&actchar 2 老人
 &name 老人
+&actchara 老人 通常
 私は山奥にひっそりと暮らしているただの老人じゃよ
 &name 私
-&actchar 1 人斬り 困り
+&changeExpression 人斬り 困り
 そうか…ところで私の剣を知らないか
 &name 老人
 あなた様の剣は枕元の近くにありますぞ
 &name 私
-&actchar 1 人斬り 照れ
+&changeExpression 人斬り 照れ
 ここにあったか 感謝する
 &name 　
 立ち上がり 剣を背に付ける
@@ -29,18 +27,18 @@
 もう行かれるのですか？
 長らく町には降りていないから話を聞きたいのじゃが…
 &name 私
-&actchar 1 人斬り 困り
+&changeExpression 人斬り 困り
 …少しだけなら
 &name 老人
 おお！それは嬉しいのぉ
 &name 私
-&actchar 1 人斬り
+&changeExpression 人斬り 通常
 すまないが水をくれないか
 &name 老人
 &stopBGM
 分かった！今持ってくるぞ！
 &name 　
-&actchar 1 人斬り 笑い
+&changeExpression 人斬り 笑い
 老人は嬉しそうに私に背を見せる
 &changeBGM エンド2恐怖
 私は老人の首に向かって剣を振るう
@@ -52,10 +50,10 @@
 悪いな爺さん しばらく家借りるぞ
 ってもう喋れねぇか 首無ぇもんな
 &name 　
-笑い声が山の中こだまする
+笑い声が部屋内に響いた
 &name 私
-&actchar 1 人斬り
+&changeExpression 人斬り 通常
 さて 食いもん食ったら町に下りるか
-&actchar 1 人斬り 笑い
+&changeExpression 人斬り 笑い
 次はどう殺そうか？ヒヒッ
 &stopBGM

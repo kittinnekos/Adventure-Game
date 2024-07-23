@@ -1,55 +1,54 @@
-&nonactchar 1
-&nonactchar 2
 &img エンド6背景
 &name ?
-&actchar 1 市民 眠り
+&actchara 市民 眠り
 &SE 心電図の音
 意識レベル 回復
 生命維持装置 一時停止
 &name 私
-&actchar 1 市民 負傷
+&changeExpression 市民 負傷
 うぅ…(頭がクラクラする…)
 あんたは…？
 &name 監視ロボ
-&actchar 2 監視ロボ
+&actchara 監視ロボ 通常
 わたしは貴方の監視ロボットです
 貴方の階級は言えますか？
 &name 私
-&actchar 1 市民 困り
+&changeExpression 市民 困り
 いや…覚えていない
 &name 監視ロボ
 そうですか 監視国家法に則り貴方の階級をリセットします
 &name 私
-&actchar 1 市民
+&changeExpression 市民 通常
 監視国家法？なんだそれは
 &name 監視ロボ
 記憶喪失の症状が見られますね 再教育の申請を送信中…完了
 &name 私
-&actchar 1 市民 驚き
+&changeExpression 市民 驚き
 待ってくれ！再教育ってなんだ！
 &name 監視ロボ
 大丈夫です 脳に記憶定着の施術を施すだけです
 &name 私
+&changeExpression 市民 困り
 そ…それは安全だよな…？
 &name 監視ロボ
 小から中程度の体調不良と記憶喪失になりやすい点はあります
 ですが死亡例はありません
 &name 私
-&actchar 1 市民 困り
 そ…そうか(安心できないな…)
-&actchar 1 市民
+&changeExpression 市民 通常
 ところで 私がこんなことになる前を知っているか？
 &name 監視ロボ
 はい 貴方は敵前逃亡中 敵の大型ロボの攻撃により瀕死の状態で回収されました
 &name 私
-&actchar 1 市民 困り
+&changeExpression 市民 驚き
 瀕死…(よく生きてたなぁ)
 &name 監視ロボ
 再教育チームの準備が整いました 麻酔開始
 &name 　
-&actchar 1 市民 眠り
+&changeExpression 市民 眠り
 &SE 煙の音
 徐々に意識を保てなくなり目を瞑る
+&nonactchara 市民
 薄れゆく意識の中 ロボの声が聞こえた
 &name 監視ロボ
 貢献は市民の義務です
