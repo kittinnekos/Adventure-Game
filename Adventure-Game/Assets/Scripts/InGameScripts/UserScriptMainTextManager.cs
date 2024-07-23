@@ -84,20 +84,14 @@ namespace AdventureGame
                     break;
 
                 /*キャラクター表示コマンド*/
-                case "&actchar":
-                    if(words.Length == 4)
-                    {
-                        //GameManager.Instance.characterManager.ChangeCharacterImage(words[1], words[2], words[3]);
-                        GameManager.Instance.characterManager.TestChangeCharacterImage(words[1], words[2], words[3]);
-                    }
-                    else
-                    {
-                        //GameManager.Instance.characterManager.ChangeCharacterImage(words[1], words[2]);
-                        GameManager.Instance.characterManager.TestChangeCharacterImage(words[1], words[2]);
-                    }
+                case "&actchara":
+                    GameManager.Instance.characterManager2.SpawnStandingPicture(words[1], words[2]);
                     break;
-                case "&nonactchar":
-                    GameManager.Instance.characterManager.NonActiveCharacterImage(words[1]);
+                case "&changeExpression":
+                    GameManager.Instance.characterManager2.ChangeExpression(words[1], words[2]);
+                    break;
+                case "&nonactchara":
+                    GameManager.Instance.characterManager2.RemoveStandingPicture(words[1]);
                     break;
 
                 /*BGM,SEコマンド*/
